@@ -1,24 +1,21 @@
-rtNumb = int(input())
-rtList = []
+rotNumb = int(input())
+rotList = []
+resList = []
 
-for i in range(rtNumb):
-	rtList.append(int(input()))
+for i in range(rotNumb):
+	rotList.append(int(input()))
 
-rtList.sort(reverse = True)
-print(rtList)
+resList.append(rotList[0])
+for i in range(1, rotNumb):
+	for j in range(len(resList)):
+		resList[j] -= rotList[i]
+		resList.append(resList[j] + 2 * rotList[i])
 
-if(sum(rtList) % 360 != 0):
-	while(len(rtList) != 0):
-		for i in range(len(rtList) - 1):
-			if(rtList[0] >= rtList[i + 1]):
-				rtList[0] -= rtList[i + 1]
-				rtList[i + 1] = 0
-		print("-after proc:", rtList)
-		if(rtList[0] != 0):
-			print("NO")
-			exit(0)
-		while(rtList.count(0) != 0):
-			rtList.remove(0)
-		print("--after drop:", rtList)
-print("YES")
-	
+#for i in range(len(resList)):
+#	resList.append(resList[i] * -1)
+
+for i in resList:
+	if(i % 360 == 0 or i == 0):
+		print("YES")
+		exit(0)
+print("NO")
